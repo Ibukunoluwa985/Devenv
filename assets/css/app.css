@@ -1,0 +1,39 @@
+/* html */
+html{
+    scroll-behavior: smooth;
+    min-height: 100%;
+}
+
+/* color */
+.bg-p{
+    background-color: #3E4551 !important;
+}
+.text-p{
+    color: #3E4551 !important;
+}
+.bg-black{
+    background-color: #000 !important;
+}
+.text-black{
+    color: #000 !important;
+}
+.bg-white{
+    background-color: #fff !important;
+}
+.text-white{
+    color: #fff !important;
+}
+
+/* scroll up */
+.scrollup{
+    position: fixed;
+    bottom: 0.5%;
+    right: 0.5%;
+}
+
+/* table */
+.tb-scroll{
+    position: relative;
+    height: 100vh;
+    overflow: auto;
+}
