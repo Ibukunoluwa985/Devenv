@@ -1,0 +1,45 @@
+<!-- base extention -->
+{% extends 'layouts/blankBase.html' %}
+
+<!-- static load -->
+{% load static %}
+
+<!-- load userform_filter -->
+{% load userform_filter %}
+
+<!-- block content -->
+{% block content %}
+
+    <!-- login form -->
+    <form action="." method="POST">
+        {% csrf_token %}
+        <div class="modal-dialog cascading-modal modal-avatar modal-md" role="document">
+            <div class="modal-content">
+            <div class="modal-header text-center">
+                <img src="{% static 'img/logo/logo.png' %}" alt="avatar" class="rounded-circle img-responsive">
+            </div>
+            <div class="modal-body mx-3">
+                <label>Your Email</label>
+                <div class="md-form mb-5">
+                    <input type="email" name="email" class="form-control validate" required>
+                </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="submit" class="btn btn-lg btn-success text-black">Activate</button>
+            </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- home -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-6 text-center">
+                <a href="/" class="btn btn-md btn-white text-black">
+                    Home
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

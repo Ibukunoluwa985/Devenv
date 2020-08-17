@@ -1,0 +1,209 @@
+<!-- base extention -->
+{% extends 'layouts/authBase.html' %}
+
+<!-- static load -->
+{% load static %}
+
+<!-- content block -->
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row justify-content-left">
+
+            <!-- user information -->
+            <div class="col-sm-6 text-left">
+                <h3>User Information</h3>
+                <div>
+                    <h5>
+                        <b>Username</b>
+                    </h5>
+                    <h6>
+                        {{ user.username }}
+                    </h6>
+                </div>
+
+                <div>
+                    <h5>
+                        <b>First Name:</b>
+                    </h5>
+                    {% if user.first_name %}
+                        <h6>
+                            {{ user.first_name }}
+                        </h6>
+                    {% else %}
+                        <form action="{% url 'first_name_update' %}" method="post" class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2">
+                            {% csrf_token %}
+                            <input type="text" name="first_name" id="firstName" class="form-control w-75 mr-2 text-center" type="text" placeholder="No first name set, add one here" required aria-label="last name">
+                            <button type="submit" class="btn btn-sm stylish-color-dark text-white">
+                                <i class="fas fa-lg fa-plus"></i>
+                            </button>
+                        </form>
+                    {% endif %}
+                </div>
+                   
+                <div>
+                    <h5>
+                        <b>Last Name:</b>
+                    </h5>
+                    {% if user.last_name %}
+                        <h6>
+                            {{ user.last_name }}
+                        </h6>
+                    {% else %}
+                        <form action="{% url 'last_name_update' %}" method="post" class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2">
+                            {% csrf_token %}
+                            <input type="text" name="last_name" id="lastName" class="form-control w-75 mr-2 text-center" type="text" placeholder="No last name set, add one here" required aria-label="last name">
+                            <button type="submit" class="btn btn-sm stylish-color-dark text-white">
+                                <i class="fas fa-lg fa-plus"></i>
+                            </button>
+                        </form>
+                    {% endif %}
+                </div>
+
+                <div>
+                    {% if user.email %}
+                        <h5>
+                            <b>Email:</b>
+                        </h5>
+                        <h6>
+                            {{ user.email }}
+                        </h6>
+                    {% else %}
+                        <h5>
+                            <b>Email:</b>
+                        </h5>
+                        <small class="text-success">set email to be able to activate account when disactivated</small>
+                        <form action="{% url 'email_update' %}" method="post" class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2">
+                            {% csrf_token %}
+                            <input type="email" name="email" id="email" class="form-control w-75 mr-2 text-center" placeholder="No email set, add one here" required aria-label="last name">
+                            <button type="submit" class="btn btn-sm stylish-color-dark text-white">
+                                <i class="fas fa-lg fa-plus"></i>
+                            </button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- user information modification -->
+            <div class="col-sm-6 text-left">
+                <h3>User Modification</h3>
+
+                <div>
+                    <h5>
+                        <b>Username:</b>
+                    </h5>
+                    <form action="{% url 'username_update' %}" method="post" class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2">
+                        {% csrf_token %}
+                        <input type="text" name="username" id="firstName" class="form-control w-75 mr-2 text-center" type="text" placeholder="No first name set, add one here" required aria-label="last name">
+                        <button type="submit" class="btn btn-sm stylish-color-dark text-white">
+                            <i class="fas fa-lg fa-edit"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div>
+                    <h5>
+                        <b>First Name:</b>
+                    </h5>
+                    <form action="{% url 'first_name_update' %}" method="post" class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2">
+                        {% csrf_token %}
+                        <input type="text" name="first_name" id="firstName" class="form-control w-75 mr-2 text-center" type="text" placeholder="No first name set, add one here" required aria-label="last name">
+                        <button type="submit" class="btn btn-sm stylish-color-dark text-white">
+                            <i class="fas fa-lg fa-edit"></i>
+                        </button>
+                    </form>
+                </div>
+                   
+                <div>
+                    <h5>
+                        <b>Last Name:</b>
+                    </h5>
+                    <form action="{% url 'last_name_update' %}" method="post" class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2">
+                        {% csrf_token %}
+                        <input type="text" name="last_name" id="lastName" class="form-control w-75 mr-2 text-center" type="text" placeholder="No last name set, add one here" required aria-label="last name">
+                        <button type="submit" class="btn btn-sm stylish-color-dark text-white">
+                            <i class="fas fa-lg fa-edit"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div>
+                    <h5>
+                        <b>Email:</b>
+                    </h5>
+                    <form action="{% url 'email_update' %}" method="post" class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2">
+                        {% csrf_token %}
+                        <input type="email" name="email" id="email" class="form-control w-75 mr-2 text-center" placeholder="No email set, add one here" required aria-label="last name">
+                        <button type="submit" class="btn btn-sm stylish-color-dark text-white">
+                            <i class="fas fa-lg fa-edit"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 text-center">
+                <h3 >Github Controls</h3>
+                
+                <!-- add github account -->
+                <h5>Add github account</h5>
+                {% if user.github %}
+                    <h6>
+                        <a href="{{ user.github.github }}" class="text-black">
+                            <i class="fab fa-2x fa-github"></i>
+                        </a>
+                        <b class="text-success">
+                            Connected to Github
+                        </b>
+                    </h6>
+                {% else %}
+                    <form action="{% url 'github_update' %}" method="post" class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2">
+                        {% csrf_token %}
+                        <input name="github" id="github" class="form-control w-75 mr-2 text-center" type="text" placeholder="No github link set, add one here" required aria-label="last name">
+                        <button type="submit" class="btn btn-sm stylish-color-dark text-white">
+                            <i class="fas fa-lg fa-plus"></i>
+                        </button>
+                    </form>
+                {% endif %}
+
+                <!-- add master repo -->
+                <h5>Add master Repo</h5>
+                {% if user.master_repo.repo %}
+                    Master repo Added
+                    <a href="{{ user.master_repo.repo }}" class="btn btn-sm stylish-color-dark text-white">
+                        Clone
+                        <i class="fab fa-lg fa-github"></i>
+                    </a>
+                {% else %}
+                    <form action="{% url 'add_repo' %}" method="post" class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2">
+                        {% csrf_token %}
+                        <input name="add_repo" id="addRepo" class="form-control w-75 mr-2 text-center" type="text" placeholder="Add master repo" required aria-label="last name">
+                        <button type="submit" class="btn btn-sm stylish-color-dark text-white">
+                            <i class="fas fa-lg fa-plus"></i>
+                        </button>
+                    </form>
+                {% endif %}
+            </div>
+
+            <!-- user danger zone -->
+            <div class="col-sm-6 text-center">
+                <h3 class="text-danger" >User Danger Zone</h3>
+                <h5>Disactivate account</h5>
+                <form action="{% url 'disactivate_account' %}" method="post">
+                    {% csrf_token %}
+                    <button name="disactivate_account" class="btn btn-md btn-danger" name="delect">
+                        <i class="fas fa-2x fa-times"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- create post -->
+            <div class="col-sm-12 text-center">
+                <h3>Ask Question</h3>
+                <a href="{% url 'create_post' %}" class="btn btn-success btn-md text-white">Ask Question</a>
+            </div>
+        </div>
+    </div>
+  
+{% endblock %}

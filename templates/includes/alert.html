@@ -1,0 +1,19 @@
+<!-- messages -->
+{% if messages %}
+    {% for message in messages %}
+        <!-- Side Modal Top Left -->
+        <div id="hideDiv" class="modal-content modal-sm navbar-expand-md fixed-top">
+            <div class="modal-header">
+                <h4 class="modal-title w-100 text-center font-weight-bold" id="myModalLabel">
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Error{% else %}{{ message.tags|title }}{% endif %}! 
+                </h4>
+            </div>
+            <div class="modal-body text-center text-capitalize">
+                <h6>
+                    {{ message }}
+                </h6>
+            </div>
+        </div>
+        <!-- Side Modal Top Left -->
+    {% endfor %}
+{% endif %}

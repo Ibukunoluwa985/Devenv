@@ -1,0 +1,52 @@
+<!-- base extention -->
+{% extends 'layouts/blankBase.html' %}
+
+<!-- static load -->
+{% load static %}
+
+<!-- load userform_filter -->
+{% load userform_filter %}
+
+<!-- block content -->
+{% block content %}
+
+<!-- <form action="{% url 'create_post' %}" method="post">
+    {% csrf_token %}
+    {% for f in form %}
+        {{ f.label }}
+        {{ f }}
+        {{ f.errors }}
+    {% endfor %}
+    <button type="submit" class="btn btn-md btn-success">
+        ask
+    </button>
+</form> -->
+
+<form action="{% url 'create_post' %}" method="POST">
+    {% csrf_token %}
+    <div class="modal-dialog cascading-modal modal-avatar modal-lg" role="document">
+        <div class="modal-content">
+        <div class="modal-header text-center">
+            <img src="{% static 'img/logo/logo.png' %}" alt="avatar" class="rounded-circle img-responsive">
+        </div>
+        <div class="modal-body mx-3">
+            {% for f in form%}
+                {{ f.label }}
+                <div class="md-form mb-5">
+                    {{ f }}
+                    <i class="text-danger">
+                        {{ f.errors }}
+                    </i>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+            <button type="submit" class="btn btn-lg btn-success">
+                ask
+            </button>
+        </div>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

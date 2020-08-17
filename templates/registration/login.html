@@ -1,0 +1,56 @@
+<!-- base extention -->
+{% extends 'layouts/blankBase.html' %}
+
+<!-- static load -->
+{% load static %}
+
+<!-- load userform_filter -->
+{% load userform_filter %}
+
+<!-- block content -->
+{% block content %}
+
+    <!-- login form -->
+    <form action="." method="POST">
+        {% csrf_token %}
+        <div class="modal-dialog cascading-modal modal-avatar modal-md" role="document">
+            <div class="modal-content">
+            <div class="modal-header text-center">
+                <img src="{% static 'img/logo/logo.png' %}" alt="avatar" class="rounded-circle img-responsive">
+            </div>
+            <div class="modal-body mx-3">
+                <label>Your username</label>
+                <div class="md-form mb-5">
+                    <input type="text" name="username" class="form-control validate" required>
+                </div>
+                <label>Your password</label>
+                <div class="md-form mb-5">
+                    <input type="password" name="password" class="form-control validate" required>
+                </div>
+
+            </div>
+            
+            <div class="modal-footer d-flex justify-content-center">
+                <a href="/account/register" class="float-right text-primary font-wieght-bold">
+                    Register
+                </a>
+                <button type="submit" class="btn btn-lg stylish-color-dark text-white">Login</button>
+            </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- home -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-6 text-center">
+                <a href="/" class="btn btn-md btn-white text-black">
+                    Home
+                </a>
+                <a href="{% url 'activate_account' %}" class="btn btn-md btn-success text-black">
+                    Activate account
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

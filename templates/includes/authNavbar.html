@@ -3,7 +3,7 @@
 
 <!--Navbar -->
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark stylish-color-dark lighten-1">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/account/">
         <img src="{% static 'img/logo/logo.png' %}" class="rounded-circle z-depth-0" alt="logo image" height="35">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
@@ -15,7 +15,7 @@
         <!-- brand display or username -->
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Username
+                <a class="nav-link" href="{% url 'profile' %}">{{ user.username }}
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
@@ -29,9 +29,9 @@
                     <img src="{% static 'img/logo/logo.png' %}" class="rounded-circle z-depth-0" alt="avatar image" height="30">
                 </a>
                 <div class="dropdown-menu dropdown-primary">
-                    <a class="dropdown-item" href="/account/index.html">My account</a>
+                    <a class="dropdown-item" href="{% url 'profile' %}">My account</a>
                     <a class="dropdown-item" href="#">Settings</a>
-                    <a class="dropdown-item" href="/account/logout">Logout</a>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                 </div>
             </li>
         </ul>
@@ -52,11 +52,19 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link waves-effect waves-light" href="">
-                    <i class="fab fa-lg fa-github"></i>
-                </a>
-            </li>
+            {% if user.github.github %}
+                <li class="nav-item">
+                    <a class="nav-link waves-effect waves-light" href="{{ user.github.github }}">
+                        <i class="fab fa-lg fa-github"></i>
+                    </a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link waves-effect waves-light" href="https://github.com/Ibukunoluwa985/Devenv.git">
+                        <i class="fab fa-lg fa-github"></i>
+                    </a>
+                </li>
+            {% endif %}
 
             <li class="nav-item">
                 <a class="nav-link waves-effect waves-light" href="">
@@ -65,8 +73,8 @@
             </li>
 
             <li class="nav-item">
-                <a href="/account/logout" class="btn btn-sm text-white btn-rounded">
-                    Logout
+                <a href="{% url 'logout' %}" class="btn btn-sm text-white btn-rounded">
+                    <i class="fas fa-lg fa-door-open"></i>
                 </a>
             </li>
         </ul>

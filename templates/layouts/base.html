@@ -12,7 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
           <!-- favicon -->
-        <link rel="shortcut icon" href="{% static 'img/logo/favicon.png' %}"  type="image/x-icon">
+        <link rel="shortcut icon" href="{% static 'img/logo/logo.png' %}"  type="image/x-icon">
 
         <!-- links, cdn -->
         <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
@@ -29,6 +29,9 @@
 
     <!-- body -->
     <body>
+
+    <!-- alert -->
+    {% include 'includes/alert.html' %}
 
     <!-- navbar -->
     {% include 'includes/navbar.html' %}
