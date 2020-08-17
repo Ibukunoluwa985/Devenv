@@ -10,6 +10,9 @@
     <!-- content block -->
     {% block content %}
 
+    {% for p in post %}
+    {{ p.body|safe }}
+    {% endfor %}
     <div class="col-sm-12">
         <b class="h3">
         Top Questions

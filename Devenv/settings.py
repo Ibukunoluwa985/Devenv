@@ -133,3 +133,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        
+        'toolbar': 'Special',
+        'toolbar_Special': 
+            [
+                ['Bold', 'Link', 'Unlink', 'Image'], ['CodeSnippet'], 
+            ], 'extraPlugins': 'codesnippet',
+
+        'width': 'auto',
+    }
+}
