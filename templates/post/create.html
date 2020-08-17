@@ -29,16 +29,13 @@
         <div class="modal-header text-center">
             <img src="{% static 'img/logo/logo.png' %}" alt="avatar" class="rounded-circle img-responsive">
         </div>
-        <div class="modal-body mx-3">
-            {% for f in form%}
-                {{ f.label }}
+        <div class="form-group">
+            <div class="modal-body mx-3">
                 <div class="md-form mb-5">
-                    {{ f }}
-                    <i class="text-danger">
-                        {{ f.errors }}
-                    </i>
+                    {{ form.media }}
+                    {{ form.as_p }}
                 </div>
-            {% endfor %}
+            </div>
         </div>
         <div class="modal-footer d-flex justify-content-center">
             <button type="submit" class="btn btn-lg btn-success">

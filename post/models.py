@@ -1,15 +1,17 @@
 from django.db import models
 from django import forms
+from ckeditor.fields import RichTextField
+from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
 
 # post creation model
 class Post(models.Model):
     title = models.CharField(max_length=500)
-    body = models.CharField(max_length=5000)
+    # body = models.CharField(max_length=5000)
+    body = RichTextField(blank=True, null=True, max_length=5000)
     language = models.CharField(max_length=50)
     created_on = models.DateTimeField(auto_now_add=True)
-
 
 # post creation form
 class CreatePostForm(forms.ModelForm):
@@ -22,6 +24,12 @@ class CreatePostForm(forms.ModelForm):
             'language',
         )
 
+        labels = {
+            'title': _(''),
+            'body': _(''),
+            'language': _(''),
+        }
+
         widgets = {
             'title': forms.TextInput(attrs=
             {
@@ -31,8 +39,6 @@ class CreatePostForm(forms.ModelForm):
             'body': forms.Textarea(attrs=
             {
                 'class': 'form-control text-center text-black',
-                'cols': '50',
-                'rows': '25',
                 'placeholder': 'Question',
             }),
             'language': forms.TextInput(attrs=
