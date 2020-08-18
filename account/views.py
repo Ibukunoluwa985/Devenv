@@ -13,13 +13,17 @@ from post.models import Post
 # home
 @login_required(login_url='/account/login/')
 def index(request):
-    post = Post.objects.order_by('-id')
+    post = Post.objects.order_by('-created_on')
     return render(request, 'auth_pages/index.html', {'post': post})
 
 # profile
 @login_required(login_url='/account/login/')
-def profile(request):
-    return render(request, 'registration/index.html')
+def profile(request, username):
+    if User.objects.get(username=username):
+        return render(request, 'registration/index.html')
+    else:
+        messages.error(request, 'Have no permission to page')
+        return redirect('/account/')
 
 # register
 def registerUser(request):

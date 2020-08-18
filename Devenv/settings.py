@@ -134,15 +134,73 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# CKeditor configuration
 CKEDITOR_CONFIGS = {
     'default': {
-        
         'toolbar': 'Special',
         'toolbar_Special': 
             [
-                ['Bold', 'Link', 'Unlink', 'Image'], ['CodeSnippet'], 
+                [
+                    '-',
+                    'Bold',
+                    'Italic',
+                    'Underline',
+                    'Copy',
+                    'AlignLeft',
+                    'Center',
+                    'Right',
+                    'Link',
+                    'Unlink',
+                    'Image',
+                    'About',
+                    'Blockquote',
+                    'Emoji',
+                ],
+                {'name': 'paragraph',
+                    'items': ['BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-',
+                            'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl',
+                            'Language']},
+                ['CodeSnippet',],
+                {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
+                {'name': 'colors', 'items': ['TextColor', 'BGColor']},
+                {'name': 'tools', 'items': ['Maximize', 'Preview']},
             ], 'extraPlugins': 'codesnippet',
 
         'width': 'auto',
     }
 }
+
+
+# CKEDITOR_CONFIGS = {
+#     'default': {
+#         'toolbar': 'Special',
+#         'toolbar_Special': 
+#             [
+#                 [
+#                     'Bold',
+#                     'Italic',
+#                     'Underline',
+#                     'Copy',
+#                     'AlignLeft',
+#                     'Center',
+#                     'Right',
+#                     'Link',
+#                     'Unlink',
+#                     'Image',
+#                     'About',
+#                     'Blockquote',
+#                     'Emoji',
+#                 ],
+#                 {'name': 'paragraph',
+#                     'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-',
+#                             'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl',
+#                             'Language']},
+#                 ['CodeSnippet',],
+#                 {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
+#                 {'name': 'colors', 'items': ['TextColor', 'BGColor']},
+#                 {'name': 'tools', 'items': ['Maximize', 'Preview']},
+#             ], 'extraPlugins': 'codesnippet',
+
+#         'width': 'auto',
+#     }
+# }

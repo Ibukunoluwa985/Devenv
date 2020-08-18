@@ -10,36 +10,28 @@
 <!-- block content -->
 {% block content %}
 
-<!-- <form action="{% url 'create_post' %}" method="post">
-    {% csrf_token %}
-    {% for f in form %}
-        {{ f.label }}
-        {{ f }}
-        {{ f.errors }}
-    {% endfor %}
-    <button type="submit" class="btn btn-md btn-success">
-        ask
-    </button>
-</form> -->
-
 <form action="{% url 'create_post' %}" method="POST">
     {% csrf_token %}
     <div class="modal-dialog cascading-modal modal-avatar modal-lg" role="document">
         <div class="modal-content">
-        <div class="modal-header text-center">
-            <img src="{% static 'img/logo/logo.png' %}" alt="avatar" class="rounded-circle img-responsive">
-        </div>
-        <div class="modal-body mx-3">
-            <div class="md-form mb-5">
-                {{ form.media }}
-                {{ form.as_p }}
+            <div class="modal-header text-center">
+                <img src="{% static 'img/logo/logo.png' %}" alt="avatar" class="rounded-circle img-responsive">
             </div>
-        </div>
-        <div class="modal-footer d-flex justify-content-center">
-            <button type="submit" class="btn btn-lg btn-success">
-                ask
-            </button>
-        </div>
+            <div class="modal-body">
+                <div class="md-form">
+                    {{ form.media }}
+                    {{ form.as_p }}
+                    <h5 class="text-success font-weight-bold">Add problem code above(Optional)</h5 class="text-success font-weigth-bold">
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="submit" class="btn btn-lg btn-success">
+                    ask
+                </button>
+                <a href="/account/" type="submit" class="btn btn-md btn-white">
+                    Home
+                </a>
+            </div>
         </div>
     </div>
 </form>

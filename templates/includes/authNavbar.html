@@ -15,7 +15,7 @@
         <!-- brand display or username -->
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'profile' %}">{{ user.username }}
+                <a class="nav-link text-capitalize" href="/account/profile/{{ user.username }}">{{ user.username }}
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
@@ -29,7 +29,7 @@
                     <img src="{% static 'img/logo/logo.png' %}" class="rounded-circle z-depth-0" alt="avatar image" height="30">
                 </a>
                 <div class="dropdown-menu dropdown-primary">
-                    <a class="dropdown-item" href="{% url 'profile' %}">My account</a>
+                    <a class="dropdown-item" href="/account/profile/{{ user.username }}">My account</a>
                     <a class="dropdown-item" href="#">Settings</a>
                     <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                 </div>

@@ -7,12 +7,8 @@
 <!-- load humanize -->
 {% load humanize %}
 
-    <!-- content block -->
-    {% block content %}
-
-    {% for p in post %}
-    {{ p.body|safe }}
-    {% endfor %}
+<!-- content block -->
+{% block content %}
     <div class="col-sm-12">
         <b class="h3">
         Top Questions
@@ -43,12 +39,12 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <h6 class="d-none d-sm-none d-md-inline mt-0 mb-3 font-weight-bold float-left">
-                                            <a style="width: 100%;" class="text-primary" href="#">
+                                            <a style="width: 100%;" class="text-primary" href="/post/{{p.id}}">
                                                 {{ p.title|truncatechars:50 }}
                                             </a>
                                         </h6>
                                         <h6 class="d-sm-inline d-md-none mt-0 mb-3 font-weight-bold float-left">
-                                            <a style="width: 100%;" class="text-primary" href="#">
+                                            <a style="width: 100%;" class="text-primary" href="">
                                                 {{ p.title|truncatechars:25 }}
                                             </a>
                                         </h6>

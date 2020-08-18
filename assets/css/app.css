@@ -37,3 +37,15 @@ html{
     height: 100vh;
     overflow: auto;
 }
+
+/* blockquote */
+blockquote{
+    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    overflow: auto;
+    width: auto;
+    padding: 5px;
+    background-color: rgb(136, 136, 136);
+    padding-bottom: 20px;
+    max-height: 500px;
+    max-width: 100%;
+}

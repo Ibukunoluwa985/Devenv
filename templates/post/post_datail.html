@@ -1,0 +1,75 @@
+<!-- base extention -->
+{% extends 'layouts/authBase.html' %}
+
+<!-- static load -->
+{% load static %}
+
+<!-- load humanize -->
+{% load humanize %}
+
+<!-- content block -->
+{% block content %}
+
+    <!-- blockquote css -->
+    <style>
+        pre{
+            overflow: auto;
+            max-height: 500px;
+            max-width: 100%;
+            background-color: #9b9b9b;
+        }
+    </style>
+
+    <div class="col-sm-12">
+        <b class="h3">
+        Top Questions
+        </b>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <a href="{% url 'create_post' %}" class="btn btn-success btn-md float-left text-white">Ask Question</a>
+        </div>
+
+        <div class="col-sm-12 col-md-6">
+        <button class="btn btn-sm float-right stylish-color-dark text-white">Year</button>
+        <button class="btn btn-sm float-right stylish-color-dark text-white">Month</button>
+        <button class="btn btn-sm float-right stylish-color-dark text-white">Week</button>
+        </div>
+    </div>
+
+    <h5>
+        <b>
+            {{ data.title }}
+        </b>
+    </h5>
+    
+    <br/>
+    
+    <p>
+        <b>Question:</b>
+        
+        <b class="date float-right">
+            {{  data.created_on|naturaltime }}
+        </b>
+
+        <br/>
+        
+        <b class="float-right">
+            Author
+            <i class="text-primary text-capitalize" >{{  data.user }}</i>
+        </b>
+
+        <br/>
+
+        {{  data.body|safe }}
+
+    </p>
+
+    <br/>
+
+    <b>Code Problem:</b><br/>
+    <code>
+        {{ data.code_body|safe }}
+    </code>
+  
+{% endblock %}
