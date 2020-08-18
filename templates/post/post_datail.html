@@ -53,9 +53,9 @@
 
         <br/>
         
-        <b class="float-right">
+        <b style="cursor: pointer;" class="float-right text-capitalize">
             Author
-            <i class="text-primary text-capitalize" >{{  data.user }}</i>
+            <i data-toggle="modal" data-target="#sideModalTR" class="text-primary" >{{  data.user.username }}</i>
         </b>
 
         <br/>
@@ -74,10 +74,40 @@
     <button onclick="alertify.alert('Copied!');" style="position:absolute;" class="btn btn-sm stylish-color-dark copy" data-clipboard-action="copy" data-clipboard-target="#codeBlock">
         <i class="fas fa-2x fa-copy text-white"></i>
     </button>
+
+    <!-- code body -->
     <pre id="codeBlock" class="pre-scrollable">
         <code>
             {{ data.code_body|safe }}
         </code>
     </pre>
+
+    <!-- modal for author informations -->    
+    <div class="modal fade right" id="sideModalTR" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
     
+        <!-- Add class .modal-side and then add class .modal-top-right (or other classes from list above) to set a position to the modal -->
+        <div class="modal-dialog modal-side modal-top-right" role="document">
+    
+    
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title w-100" id="myModalLabel"><b>Author's Info</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="authorInfo" class="text-capitalize text-left p-2">
+                    <h5>
+                        USERNAME: {{ data.user.username }}
+                    </h5>
+                    <h5>
+                        EMAIL: {{ data.user.email }}
+                    </h5>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
 {% endblock %}
