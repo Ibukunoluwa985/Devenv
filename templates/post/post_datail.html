@@ -16,6 +16,8 @@
             background-color: #9b9b9b;
         }
     </style>
+    
+
 
     <div class="col-sm-12">
         <b class="h3">
@@ -64,11 +66,18 @@
 
     <br/>
 
-    <b>Code Problem:</b><br/>
-    <pre class="pre-scrollable">
+    <b>Code Problem:</b>
+    
+    <br/>
+
+    <!-- copy button -->
+    <button style="position:absolute;" class="btn btn-sm stylish-color-dark copy" data-clipboard-action="copy" data-clipboard-target="#codeBlock">
+        <i class="fas fa-2x fa-copy text-white"></i>
+    </button>
+    <pre id="codeBlock" class="pre-scrollable">
         <code>
             {{ data.code_body|safe }}
         </code>
     </pre>
-   
+    
 {% endblock %}
