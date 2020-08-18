@@ -14,7 +14,7 @@ from post.models import Post
 @login_required(login_url='/account/login/')
 def index(request):
     post = Post.objects.order_by('-created_on')
-    return render(request, 'auth_pages/index.html', {'post': post})
+    return render(request, 'auth_pages/index.html',{'post': post})
 
 # profile
 @login_required(login_url='/account/login/')
