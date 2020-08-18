@@ -83,13 +83,8 @@
     </pre>
 
     <!-- modal for author informations -->    
-    <div class="modal fade right" id="sideModalTR" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
-    
-        <!-- Add class .modal-side and then add class .modal-top-right (or other classes from list above) to set a position to the modal -->
-        <div class="modal-dialog modal-side modal-top-right" role="document">
-    
-    
+    <div class="modal fade right" id="sideModalTR" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-side modal-top-right modal-md" role="document">    
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title w-100" id="myModalLabel"><b>Author's Info</b></h4>
@@ -103,10 +98,13 @@
                         USERNAME: {{ data.user.username }}
                     </h5>
                     <h5>
-                        GITHUB: {{ data.user.github.repo }}
+                        GITHUB: 
+                        <a href="{{ data.user.github.github }}" class="text-black">
+                            <i class="fab fa-lg fa-github"></i>
+                        </a>
                     </h5>
                     <h5>
-                        STAFF
+                        STAFF:
                         {% if data.user.is_staff %}
                             <label class="switch">
                                 <input type="checkbox" checked disabled>
@@ -120,7 +118,7 @@
                         {% endif %}
                     </h5>
                     <h5>
-                        ACTIVE
+                        ACTIVE:
                         {% if data.user.is_active %}
                             <label class="switch">
                                 <input type="checkbox" checked disabled>
@@ -133,10 +131,17 @@
                             </label>
                         {% endif %}
                     </h5>
-                    
+                    <h5>
+                        LAST SEEN:
+                        {{ data.user.last_login|naturaltime }}
+                    </h5>
+                    <h5>
+                        LAST POST:
+                        {{ data.created_on|naturaltime }}
+                    </h5>
                 </div>
             </div>
         </div>
-        </div>
     </div>
+
 {% endblock %}
