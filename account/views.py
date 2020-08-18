@@ -19,10 +19,15 @@ def index(request):
 # profile
 @login_required(login_url='/account/login/')
 def profile(request, username):
-    if User.objects.get(username=username):
-        return render(request, 'registration/index.html')
-    else:
-        messages.error(request, 'Have no permission to page')
+
+    try:
+        if User.objects.get(username=username):
+            return render(request, 'registration/index.html')
+        else:
+            messages.error(request, 'Have no permission to page')
+            return redirect('/account/')
+    except ObjectDoesNotExist:
+        messages.error(request, 'User does not exist')
         return redirect('/account/')
 
 # register
@@ -83,7 +88,7 @@ def username_update(request):
 
         if User.objects.filter(username=username_update).exists():
             messages.error(request, 'User already exists.')
-            return redirect('/account/profile/')
+            return redirect('/account/')
 
         else:
             # get user's data from DB and updating them
@@ -94,7 +99,7 @@ def username_update(request):
             username.save()
 
             messages.success(request, "Username Added")
-            return redirect('/account/profile/')
+            return redirect('/account/')
     else:
         return render(request, 'registration/index.html')
 
@@ -107,7 +112,7 @@ def first_name_update(request):
 
         if User.objects.filter(first_name=change_first_name).exists():
             messages.error(request, 'User already exists.')
-            return redirect('/account/profile/')
+            return redirect('/account/')
 
         else:
             # get user's data from DB and updating them
@@ -118,7 +123,7 @@ def first_name_update(request):
             first_name.save()
 
             messages.success(request, "First Name Added")
-            return redirect('/account/profile/')
+            return redirect('/account/')
     else:
         return render(request, 'registration/index.html')
 
@@ -131,7 +136,7 @@ def last_name_update(request):
 
         if User.objects.filter(last_name=change_last_name).exists():
             messages.error(request, 'User already exists.')
-            return redirect('/account/profile/')
+            return redirect('/account/')
 
         else:
             # get user's data from DB and updating them
@@ -142,7 +147,7 @@ def last_name_update(request):
             last_name.save()
 
             messages.success(request, "Last Name Added")
-            return redirect('/account/profile/')
+            return redirect('/account/')
     else:
         return render(request, 'registration/index.html')
 
@@ -155,7 +160,7 @@ def email_update(request):
 
         if User.objects.filter(email=change_email).exists():
             messages.error(request, 'User already exists.')
-            return redirect('/account/profile/')
+            return redirect('/account/')
 
         else:
             # get user's data from DB and updating them
@@ -166,7 +171,7 @@ def email_update(request):
             email.save()
 
             messages.success(request, "Email Added")
-            return redirect('/account/profile/')
+            return redirect('/account/')
     else:
         return render(request, 'registration/index.html')
 
@@ -179,7 +184,7 @@ def github_update(request):
 
         if User.objects.filter(username=change_github).exists():
             messages.error(request, 'User github exists.')
-            return redirect('/account/profile/')
+            return redirect('/account/')
 
         else:
             # get user's data from DB and updating them
@@ -194,7 +199,7 @@ def github_update(request):
             github.save()
 
             messages.success(request, "Github Link Added")
-            return redirect('/account/profile/')
+            return redirect('/account/')
     else:
         return render(request, 'registration/index.html')
 
@@ -208,7 +213,7 @@ def add_repo(request):
 
         if User.objects.filter(username=add_new_repo).exists():
             messages.error(request, 'User repo exists.')
-            return redirect('/account/profile/')
+            return redirect('/account/')
 
         else:
             # get user's data from DB and updating them
@@ -223,7 +228,7 @@ def add_repo(request):
             repo.save()
 
             messages.success(request, "Master repo Added")
-            return redirect('/account/profile/')
+            return redirect('/account/')
     else:
         return render(request, 'registration/index.html')
 
