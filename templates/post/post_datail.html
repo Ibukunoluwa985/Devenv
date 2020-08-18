@@ -13,9 +13,6 @@
     <!-- blockquote css -->
     <style>
         pre{
-            overflow: auto;
-            max-height: 500px;
-            max-width: 100%;
             background-color: #9b9b9b;
         }
     </style>
@@ -68,8 +65,10 @@
     <br/>
 
     <b>Code Problem:</b><br/>
-    <code>
-        {{ data.code_body|safe }}
-    </code>
-  
+    <pre class="pre-scrollable">
+        <code>
+            {{ data.code_body|safe }}
+        </code>
+    </pre>
+   
 {% endblock %}
