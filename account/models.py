@@ -17,11 +17,10 @@ class ProfileImg(models.Model):
     User = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_img = models.ImageField(upload_to='profile_img', default='profile_img/avatar.png')
 
-class ProfileImagForm(forms.ModelForm):
+class ProfileImgForm(forms.ModelForm):
     
     class Meta:
+
         model = ProfileImg
 
-        fields = (
-            'profile_img'
-        )
+        fields = ('profile_img',)

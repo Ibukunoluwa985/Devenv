@@ -4,7 +4,7 @@ from django.contrib.auth.models import auth, User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from account.models import Github, Master_repo, ProfileImg
+from account.models import Github, Master_repo, ProfileImg, ProfileImgForm
 from django.core.exceptions import ObjectDoesNotExist
 from post.models import Post
 from django.db.models import Q
@@ -49,7 +49,15 @@ def profile(request, username):
 
     try:
         if User.objects.get(username=username):
-            return render(request, 'registration/index.html')
+            if request.method == 'POST':
+                form = ProfileImgForm(request.POST)
+                if form.is_valid():
+                    form.save()
+                else:
+                    form = ProfileImgForm()
+                    return render(request, 'registration/index.html', {'form': form})
+            else:
+                return render(request, 'registration/index.html')
         else:
             messages.error(request, 'Have no permission to page')
             return redirect('/account/')
