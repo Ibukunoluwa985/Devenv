@@ -26,7 +26,14 @@
         <ul class="navbar-nav nav-flex-icons">
             <li class="nav-item avatar dropdown">
                 <a class="nav-link p-0nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="{% static 'img/logo/logo.png' %}" class="rounded-circle z-depth-0" alt="avatar image" height="30">
+                    {% for pi in profile_img %}
+                        {% if pi.User_id == user.id %}
+                            <img src="/media/{{ pi.profile_img }}" class="rounded-circle z-depth-0 img-fluid" width="30" alt="author" height="30" alt="{{ user.username }}">
+                        {% else %}
+                            {{ post.user_id }}
+                            <img src="{% static 'img/logo/avatar.png' %}" class="rounded-circle z-depth-0 img-fluid" width="30" alt="author" height="30" alt="Devenv avatar">
+                        {% endif %}
+                    {% endfor %}
                 </a>
                 <div class="dropdown-menu dropdown-primary">
                     <a class="dropdown-item" href="/account/profile/{{ user.username }}">My account</a>

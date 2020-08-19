@@ -4,7 +4,7 @@ from django.contrib.auth.models import auth, User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from account.models import Github, Master_repo
+from account.models import Github, Master_repo, ProfileImg
 from django.core.exceptions import ObjectDoesNotExist
 from post.models import Post
 from django.db.models import Q
@@ -13,6 +13,7 @@ from django.db.models import Q
 
 # post search
 def search(request):
+    # search query
     query = request.GET.get('q')
     result = Post.objects.filter(
                 Q(user__username__icontains=query) |
@@ -21,13 +22,26 @@ def search(request):
                 Q(language__icontains=query) |
                 Q(created_on__icontains=query)
             )
-    return render(request, 'auth_pages/index.html',{'result': result})
+    return render(request, 'auth_pages/index.html',{'result': result,})
+
+# home navbar
+@login_required(login_url='/account/login/')
+def navbar(request):
+    # profile image
+    profile_img = ProfileImg.objects.filter(id = request.user.id)
+    return render(request, 'includes/authNavbar.html', {'profile_img': profile_img,})
 
 # home
 @login_required(login_url='/account/login/')
 def index(request):
+    # profile image
+    profile_img = ProfileImg.objects.all()
     post = Post.objects.order_by('-created_on')[:50]
-    return render(request, 'auth_pages/index.html',{'post': post})
+    return render(request, 'auth_pages/index.html',
+        {
+            'post': post,
+            'profile_img': profile_img,
+        })
 
 # profile
 @login_required(login_url='/account/login/')

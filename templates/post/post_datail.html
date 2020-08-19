@@ -95,7 +95,7 @@
             <div class="modal-body">
                 <div id="authorInfo" class="text-capitalize text-left p-2">
                     <h5>
-                        USERNAME: {{ data.user.username }}
+                        USERNAME: {{ data.user.username|truncatechars:20 }}
                     </h5>
                     <h5>
                         GITHUB: 

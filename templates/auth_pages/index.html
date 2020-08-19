@@ -55,7 +55,14 @@
                                         </b>
                                     </p>
                                 </div>
-                                <img src="{% static 'img/logo/logo.png' %}" class="rounded-circle z-depth-0 img-fluid" width="35" alt="author" height="50">
+                                {% for pi in profile_img %}
+                                    {% if pi.User_id == p.user_id %}
+                                        <img src="/media/{{ pi.profile_img }}" class="rounded-circle z-depth-0 img-fluid" width="35" alt="author" height="50" alt="{{ user.username }}">
+                                    {% else %}
+                                        {{ post.user_id }}
+                                        <img src="{% static 'img/logo/avatar.png' %}" class="rounded-circle z-depth-0 img-fluid" width="35" alt="author" height="50" alt="Devenv">
+                                    {% endif %}
+                                {% endfor %}
                             </div>
                         {% endfor %}
                     </tr>
@@ -101,7 +108,14 @@
                                         </b>
                                     </p>
                                 </div>
-                                <img src="{% static 'img/logo/logo.png' %}" class="rounded-circle z-depth-0 img-fluid" width="35" alt="author" height="50">
+                                {% for pi in profile_img %}
+                                    {% if pi.User_id == p.user_id %}
+                                        <img src="/media/{{ pi.profile_img }}" class="rounded-circle z-depth-0 img-fluid" width="35" alt="author" height="50" alt="{{ user.username }}">
+                                    {% else %}
+                                        {{ post.user_id }}
+                                        <img src="{% static 'img/logo/avatar.png' %}" class="rounded-circle z-depth-0 img-fluid" width="35" alt="author" height="50" alt="Devenv">
+                                    {% endif %}
+                                {% endfor %}
                             </div>
                         {% endfor %}
                     </tr>
