@@ -2,6 +2,9 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    # post search
+    path('result', views.search, name='search'),
+    
     # auth home page
     path('',views.index, name='index'),
     

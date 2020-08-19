@@ -12,7 +12,7 @@ def create_post(request):
             post = form.save(commit=False)
             post.user = request.user
             post.save()
-            post = Post.objects.order_by('-created_on')
+            post = Post.objects.order_by('-created_on')[:50]
             return redirect('/account/', {'post': post})
         else:
             form = CreatePostForm()

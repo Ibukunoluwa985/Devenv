@@ -15,62 +15,109 @@
         </b>
     </div>
     <div class="row">
-        <div class="col-sm-12 col-md-6">
+        <div class="col-sm-12 col-md-6 ">
             <a href="{% url 'create_post' %}" class="btn btn-success btn-md float-left text-white">Ask Question</a>
-        </div>
-
-        <div class="col-sm-12 col-md-6">
-            <button class="btn btn-sm float-right stylish-color-dark text-white">Year</button>
-            <button class="btn btn-sm float-right stylish-color-dark text-white">Month</button>
-            <button class="btn btn-sm float-right stylish-color-dark text-white">Week</button>
         </div>
     </div>
 
-    <!--Table-->
-    <table class="table table-fixed">
-        <!--Table body-->
-        <tbody>
-        <tr>
-            <td>
-                <tr>
-                    {% for p in post %}
-                        <div class="media">
-                            <div class="media-body">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <h6 class="d-none d-sm-none d-md-inline mt-0 mb-3 font-weight-bold float-left">
-                                            <a style="width: 100%;" class="text-primary" href="/post/{{p.id}}">
-                                                {{ p.title|truncatechars:50 }}
-                                            </a>
-                                        </h6>
-                                        <h6 class="d-sm-inline d-md-none mt-0 mb-3 font-weight-bold float-left">
-                                            <a style="width: 100%;" class="text-primary" href="">
-                                                {{ p.title|truncatechars:25 }}
-                                            </a>
-                                        </h6>
+    {% if result %}
+        <!--Table-->
+        <table class="table table-fixed">
+            <!--Table body-->
+            <tbody>
+            <tr>
+                <td>
+                    <tr>
+                        {% for r in result %}
+                            <div class="media">
+                                <div class="media-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h6 class="d-none d-sm-none d-md-inline mt-0 mb-3 font-weight-bold float-left">
+                                                <a style="width: 100%;" class="text-primary" href="/post/{{r.id}}">
+                                                    {{ r.title|truncatechars:50 }}
+                                                </a>
+                                            </h6>
+                                            <h6 class="d-sm-inline d-md-none mt-0 mb-3 font-weight-bold float-left">
+                                                <a style="width: 100%;" class="text-primary" href="">
+                                                    {{ r.title|truncatechars:25 }}
+                                                </a>
+                                            </h6>
+                                        </div>
                                     </div>
+                                    <p class="float-right">
+                                        0 answers
+                                        <a class="d-none d-sm-none d-md-inline btn btn-sm stylish-color-dark text-white" href="/lang/{{ r.language }}">
+                                            {{ r.language }}
+                                        </a>
+                                        <b>
+                                            {{ r.created_on|naturaltime }}
+                                        </b>
+                                    </p>
                                 </div>
-                                <p class="float-right">
-                                    0 answers
-                                    <a class="d-none d-sm-none d-md-inline btn btn-sm stylish-color-dark text-white" href="/lang/{{ p.language }}">
-                                        {{ p.language }}
-                                    </a>
-                                    <b>
-                                        {{ p.created_on|naturaltime }}
-                                    </b>
-                                </p>
+                                <img src="{% static 'img/logo/logo.png' %}" class="rounded-circle z-depth-0 img-fluid" width="35" alt="author" height="50">
                             </div>
-                            <img src="{% static 'img/logo/logo.png' %}" class="rounded-circle z-depth-0 img-fluid" width="35" alt="author" height="50">
-                        </div>
-                    {% endfor %}
-                </tr>
-            </td>
+                        {% endfor %}
+                    </tr>
+                </td>
 
-        </tr>
-        </tbody>
-        <!--Table body-->
+            </tr>
+            </tbody>
+            <!--Table body-->
+        </table>
+        <!--Table-->
+    {% elif result is None %}
+        <!--Table-->
+        <table class="table table-fixed">
+            <!--Table body-->
+            <tbody>
+            <tr>
+                <td>
+                    <tr>
+                        {% for p in post %}
+                            <div class="media">
+                                <div class="media-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h6 class="d-none d-sm-none d-md-inline mt-0 mb-3 font-weight-bold float-left">
+                                                <a style="width: 100%;" class="text-primary" href="/post/{{p.id}}">
+                                                    {{ p.title|truncatechars:50 }}
+                                                </a>
+                                            </h6>
+                                            <h6 class="d-sm-inline d-md-none mt-0 mb-3 font-weight-bold float-left">
+                                                <a style="width: 100%;" class="text-primary" href="">
+                                                    {{ p.title|truncatechars:25 }}
+                                                </a>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <p class="float-right">
+                                        0 answers
+                                        <a class="d-none d-sm-none d-md-inline btn btn-sm stylish-color-dark text-white" href="/lang/{{ p.language }}">
+                                            {{ p.language }}
+                                        </a>
+                                        <b>
+                                            {{ p.created_on|naturaltime }}
+                                        </b>
+                                    </p>
+                                </div>
+                                <img src="{% static 'img/logo/logo.png' %}" class="rounded-circle z-depth-0 img-fluid" width="35" alt="author" height="50">
+                            </div>
+                        {% endfor %}
+                    </tr>
+                </td>
 
-    </table>
-    <!--Table-->
-  
+            </tr>
+            </tbody>
+            <!--Table body-->
+        </table>
+        <!--Table-->
+    {% else%}
+        <div class="col-sm-12 text-center text-danger">
+            <i class="fas fa-6x fa-exclamation-triangle"></i>
+            <h3 class="font-weight-bold">
+                Search Not Found
+            </h3>
+        </div>
+    {% endif %}
 {% endblock %}

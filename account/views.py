@@ -7,13 +7,26 @@ from django.contrib import messages
 from account.models import Github, Master_repo
 from django.core.exceptions import ObjectDoesNotExist
 from post.models import Post
+from django.db.models import Q
 
 # Create your views here.
+
+# post search
+def search(request):
+    query = request.GET.get('q')
+    result = Post.objects.filter(
+                Q(user__username__icontains=query) |
+                Q(title__icontains=query) |
+                Q(body__icontains=query) |
+                Q(language__icontains=query) |
+                Q(created_on__icontains=query)
+            )
+    return render(request, 'auth_pages/index.html',{'result': result})
 
 # home
 @login_required(login_url='/account/login/')
 def index(request):
-    post = Post.objects.order_by('-created_on')
+    post = Post.objects.order_by('-created_on')[:50]
     return render(request, 'auth_pages/index.html',{'post': post})
 
 # profile

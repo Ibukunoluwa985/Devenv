@@ -178,8 +178,8 @@
           </button>
       </div>
       <div class="col-sm-12 text-center">
-          <form class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2">
-                <input class="form-control form-control-sm mr-3 w-75 text-center" type="text" placeholder="Questions, Help, Jobs, Language..." aria-label="Search">
+          <form action="/account/result" method="GET" class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2">
+                <input name="q" value="{{ request.GET.q }}" class="form-control form-control-sm mr-3 w-75 text-center" type="text" placeholder="Questions, Help, Jobs, Language..." aria-label="Search">
                 <button class="btn btn-sm">
                     <i class="fas fa-lg fa-search" aria-hidden="true"></i>
                 </button>
